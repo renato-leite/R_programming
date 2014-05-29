@@ -1,0 +1,21 @@
+
+rankall <- function(outcome, num = "best") {
+
+source("rankhospital.R")
+ dados.outcome <- read.csv("outcome-of-care-measures.csv", 
+             colClasses = "character")
+  lista.estados = sort(unique(dados.outcome[,7]))
+
+  hospital = NULL  
+
+  for(i in 1:length(lista.estados)){
+
+    hospital = c(hospital , rankhospital(lista.estados[i],outcome,num))
+  }
+  state = lista.estados
+  Ranking.Total = data.frame(hospital,state)
+  
+  return(Ranking.Total)  
+
+
+}
